@@ -2,10 +2,7 @@ import pytest
 
 from src.product import Product
 from src.category import Category
-from src.tools.dataset_handlers import value_packer
-from data_for_tests.product_test_data.test_datasets import (
-    product_create_valid_data
-)
+
 
 
 @pytest.fixture(scope='function',
