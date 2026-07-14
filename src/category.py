@@ -18,7 +18,7 @@ class Category:
             raise TypeError("description должен быть str")
         if not isinstance(products, list):
             raise TypeError("products должен быть list")
-        if not all(isinstance(item, Product)for item in products):
+        if not all(isinstance(item, Product) for item in products):
             raise TypeError("Не все элементы products являются типом Product")
 
         self.name = name

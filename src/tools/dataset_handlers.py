@@ -22,7 +22,7 @@ def param_packer(data: list[dict[str, Any]]) -> str:
     объекта.
     """
     main_data_set = [list(item.values())[0] for item in data][0]
-    return ', '.join(main_data_set.keys())
+    return ", ".join(main_data_set.keys())
 
 
 def param_packer_old(data: list[dict[str, Any]]) -> str:
