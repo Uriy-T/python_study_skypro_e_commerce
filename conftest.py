@@ -1,3 +1,1 @@
-pytest_plugins = (
-    'fixtures.entities_fixtures'
-)
+pytest_plugins = "fixtures.entities_fixtures"
