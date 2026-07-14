@@ -9,7 +9,7 @@ category_create_valid_data: list[dict[str, Any]] = [
     {
         "expected_values": {
             "name": "Устройства связи",
-            "description": "Телекоммуникации: рации, станции,"
+            "description": "Телекоммуникации: рации, станции, "
                            "смартфоны, спутниковый интернет",
             "product_count": 1,
             "category_count": 1,
