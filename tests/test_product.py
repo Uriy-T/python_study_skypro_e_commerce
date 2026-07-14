@@ -1,6 +1,6 @@
 import pytest
 
-from src.category import Category
+
 from src.product import Product
 from src.tools.dataset_handlers import (
     param_packer_old,
