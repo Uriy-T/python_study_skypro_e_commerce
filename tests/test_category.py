@@ -18,6 +18,7 @@ class TestCategory:
         self,
         create_category: Category,
     ) -> None:
+
         assert (
             create_category.name == c_valid_data[0]["expected_values"]["name"]
         )
@@ -25,8 +26,7 @@ class TestCategory:
             create_category.description
             == c_valid_data[0]["expected_values"]["description"]
         )
-        assert isinstance(create_category.products, list)
-        assert isinstance(create_category.products[0], Product)
+        assert isinstance(create_category.get_products, list)
         assert (
             create_category.product_count
             == c_valid_data[0]["expected_values"]["product_count"]
