@@ -12,10 +12,18 @@ if __name__ == "__main__":
         [product1, product2, product3]
     )
 
-    print(category1.products)
+    print(category1.get_products)
     product4 = Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
     category1.add_product(product4)
-    print(category1.products)
+    print(category1.get_products)
+    print(category1.product_count)
+    product5 = Product("55\" QLED 4K", "Фоновая подсветка", 97000.0, 30)
+    category1.add_product(product5)
+    print(category1.get_products)
+    print(category1.product_count)
+    product6 = Product("55\" QLED 4K", "Фоновая подсветка", 150300.0, 7)
+    category1.add_product(product6)
+    print(category1.get_products)
     print(category1.product_count)
 
     new_product = Product.new_product(
