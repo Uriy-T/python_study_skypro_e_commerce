@@ -39,6 +39,7 @@ class Category:
 
         else:
             self.__products.append(add_product)
+            Category.product_count +=1
 
     @property
     def get_products(self) -> list[str]:
