@@ -38,7 +38,9 @@ class Product:
         return self.__price
 
     @price.setter
-    def price(self, new_price) -> int | float | None:
+    def price(self, new_price: int | float) -> int | float | None:
+        if not isinstance(new_price, int | float):
+            raise TypeError("new_price должен быть числом")
         if new_price <= 0:
             print('Цена не должна быть нулевая или отрицательная')
         elif self.__price > new_price:
@@ -49,7 +51,7 @@ class Product:
                 f'Ответ: '
             )
 
-            if approve_action.lower() in ['y', 'yes', 'да']:
+            if approve_action.lower() == 'y':
                 self.__price = new_price
             else:
                 pass
