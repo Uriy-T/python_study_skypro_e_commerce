@@ -29,7 +29,7 @@ class Category:
 
     def add_product(self, add_product: Product) -> None:
         if not isinstance(add_product, Product):
-            raise TypeError('add_product должен быть типом Product')
+            raise TypeError("add_product должен быть типом Product")
         for product in self.__products:
             if product.name == add_product.name:
                 product.quantity += add_product.quantity
@@ -41,7 +41,11 @@ class Category:
             self.__products.append(add_product)
 
     @property
-    def get_products(self):
-        return [(f'{product.name}, {product.price} руб.'
-                 f' Остаток: {product.quantity}')
-                for product in self.__products]
+    def get_products(self) -> list[str]:
+        return [
+            (
+                f"{product.name}, {product.price} руб."
+                f" Остаток: {product.quantity}"
+            )
+            for product in self.__products
+        ]
