@@ -28,6 +28,8 @@ class Category:
         Category.product_count = len(self.__products)
 
     def add_product(self, add_product: Product) -> None:
+        if not isinstance(add_product, Product):
+            raise TypeError('add_product должен быть типом Product')
         for product in self.__products:
             if product.name == add_product.name:
                 product.quantity += add_product.quantity
