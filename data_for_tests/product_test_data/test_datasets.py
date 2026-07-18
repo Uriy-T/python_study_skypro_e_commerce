@@ -398,3 +398,70 @@ product_create_invalid_data_type: list[dict[str, Any]] = [
         "system_answer": "quantity должно быть положительным числом",
     },
 ]
+
+product_create_by_classmethod_invalid_data: list[dict[str, Any]] = [
+    # Проверка создания продукта с отсутствующими
+    # параметрами в конструкторе класса
+    {
+        "data_for_create": {
+            "description": "Лучшее устройство для лучшей связи",
+            "price": 57000,
+            "quantity": 23,
+        },
+        "exception_type": KeyError,
+        "system_answer": "name",
+    },
+    {
+        "data_for_create": {
+            "name": "IPhone 200",
+            "price": 57000,
+            "quantity": 23,
+        },
+        "exception_type": KeyError,
+        "system_answer": "description",
+    },
+    {
+        "data_for_create": {
+            "name": "IPhone 200",
+            "description": "Лучшее устройство для лучшей связи",
+            "quantity": 23,
+        },
+        "exception_type": KeyError,
+        "system_answer": "price",
+    },
+    {
+        "data_for_create": {
+            "name": "IPhone 200",
+            "description": "Лучшее устройство для лучшей связи",
+            "price": 57000,
+        },
+        "exception_type": KeyError,
+        "system_answer": "quantity"
+    }
+]
+
+set_price_with_incorrect_type: list[dict[str, Any]] = [
+    {
+       'new_price': '1'
+    },
+
+    {
+        'new_price': True
+    },
+
+    {
+        'new_price': [1, 2, 3]
+    },
+
+    {
+       'new_price': {1, 2, 3}
+    },
+
+    {
+        'new_price': (1, 2, 3)
+    },
+
+    {
+        'new_price': {'test_price': 1}
+    }
+]

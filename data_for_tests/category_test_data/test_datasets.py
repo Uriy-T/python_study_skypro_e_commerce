@@ -344,3 +344,37 @@ category_create_invalid_data_type: list[dict[str, Any]] = [
                          " являются типом Product",
     },
 ]
+
+add_product_incorrect_type: list[dict[str, Any]] = [
+    {
+        'add_product': '1'
+    },
+
+    {
+        'add_product': 1
+    },
+
+    {
+        'add_product': 1.1
+    },
+
+    {
+        'add_product': True
+    },
+
+    {
+        'add_product': [1, 2, 3]
+    },
+
+    {
+        'add_product': {1, 2, 3}
+    },
+
+    {
+        'add_product': (1, 2, 3)
+    },
+
+    {
+        'add_product': {'test_price': 1}
+    }
+]
