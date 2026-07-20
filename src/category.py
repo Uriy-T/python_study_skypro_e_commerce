@@ -39,7 +39,7 @@ class Category:
 
         else:
             self.__products.append(add_product)
-            Category.product_count +=1
+            Category.product_count += 1
 
     @property
     def products_summary_quantity(self) -> int:
@@ -51,15 +51,10 @@ class Category:
         """
         return sum([product.quantity for product in self.__products])
 
-
     @property
     def get_products(self) -> list[str]:
-        return [
-            (
-                product.__str__()
-            )
-            for product in self.__products
-        ]
+        return [(product.__str__()) for product in self.__products]
 
     def __str__(self) -> str:
-        return f'{self.name}, количество продуктов: {self.products_summary_quantity} шт.'
+        return (f"{self.name}, количество продуктов:"
+                f" {self.products_summary_quantity} шт.")

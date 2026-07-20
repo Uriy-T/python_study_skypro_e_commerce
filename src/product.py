@@ -5,7 +5,7 @@ class Product:
     """
 
     def __init__(
-            self, name: str, description: str, price: float, quantity: int
+        self, name: str, description: str, price: float, quantity: int
     ):
 
         if not isinstance(name, str):
@@ -61,7 +61,7 @@ class Product:
             self.__price = new_price
 
     def __str__(self) -> str:
-        return  f"{self.name.capitalize()}, {self.price} руб. Остаток: {self.quantity} шт."
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
-    def __add__(self, other: 'Product') -> int | float:
+    def __add__(self, other: "Product") -> int | float:
         return (self.price * self.quantity) + (other.price * other.quantity)

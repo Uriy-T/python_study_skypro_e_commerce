@@ -1,10 +1,6 @@
-from typing import Any
-import re
 
 import pytest
 
-from data_for_tests.category_test_data.test_datasets import \
-    add_product_incorrect_type as incorrect_product
 from data_for_tests.category_test_data.test_datasets import \
     category_create_invalid_data as c_invalid_data
 from data_for_tests.category_test_data.test_datasets import \
@@ -233,9 +229,7 @@ class TestAddProduct:
 class TestMagicMethods:
 
     @pytest.mark.category_positive
-    def test_str_method(
-        self, create_category: Category
-    ) -> None:
+    def test_str_method(self, create_category: Category) -> None:
 
         product1 = Product(
             "Xbox series X", "Консоль + 2 геймпада", 56000.00, 30
@@ -251,4 +245,7 @@ class TestMagicMethods:
             products=[product1, product2],
         )
 
-        assert category.__str__() == 'Игровые консоли, количество продуктов: 41 шт.'
+        assert (
+            category.__str__()
+            == "Игровые консоли, количество продуктов: 41 шт."
+        )
