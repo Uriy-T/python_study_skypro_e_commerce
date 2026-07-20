@@ -42,11 +42,24 @@ class Category:
             Category.product_count +=1
 
     @property
+    def products_summary_quantity(self) -> int:
+        """
+        Вычисляет суммарное количество всех продуктов
+        в категории.
+        :return: вычисленное количество в формате
+        целого числа.
+        """
+        return sum([product.quantity for product in self.__products])
+
+
+    @property
     def get_products(self) -> list[str]:
         return [
             (
-                f"{product.name}, {product.price} руб."
-                f" Остаток: {product.quantity}"
+                product.__str__()
             )
             for product in self.__products
         ]
+
+    def __str__(self) -> str:
+        return f'{self.name.capitalize()}, количество продуктов: {self.products_summary_quantity} шт.'
