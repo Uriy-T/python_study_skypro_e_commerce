@@ -23,5 +23,39 @@ class Product:
 
         self.name = name
         self.description = description
-        self.price = price
+        self.__price = price
         self.quantity = quantity
+
+    @classmethod
+    def new_product(cls, product_data: dict) -> "Product":
+        return cls(
+            name=product_data["name"],
+            description=product_data["description"],
+            price=product_data["price"],
+            quantity=product_data["quantity"],
+        )
+
+    @property
+    def price(self) -> int | float:
+        return self.__price
+
+    @price.setter
+    def price(self, new_price: int | float) -> None:
+        if not isinstance(new_price, int | float):
+            raise TypeError("new_price должен быть числом")
+        if new_price <= 0:
+            print("Цена не должна быть нулевая или отрицательная")
+        elif self.__price > new_price:
+            approve_action = input(
+                f"Актуальная цена {self.name}: {self.__price}.\n"
+                f"Ваша цена ниже актуальной: {new_price}.\n"
+                f"Установить предложенную вами цену? y/n\n"
+                f"Ответ: "
+            )
+
+            if approve_action.lower() == "y":
+                self.__price = new_price
+            else:
+                pass
+        else:
+            self.__price = new_price

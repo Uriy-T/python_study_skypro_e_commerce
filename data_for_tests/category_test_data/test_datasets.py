@@ -10,7 +10,7 @@ category_create_valid_data: list[dict[str, Any]] = [
         "expected_values": {
             "name": "Устройства связи",
             "description": "Телекоммуникации: рации, станции, "
-                           "смартфоны, спутниковый интернет",
+            "смартфоны, спутниковый интернет",
             "product_count": 1,
             "category_count": 1,
         }
@@ -23,12 +23,12 @@ category_create_invalid_data: list[dict[str, Any]] = [
     {
         "data_for_create": {
             "description": "Телекоммуникации: рации, станции,"
-                           "смартфоны, спутниковый интернет",
+            "смартфоны, спутниковый интернет",
             "products": [test_product1, test_product2],
         },
         "exception_type": TypeError,
         "system_answer": "Category.__init__() missing 1 required"
-                         " positional argument: 'name'",
+        " positional argument: 'name'",
     },
     {
         "data_for_create": {
@@ -37,17 +37,17 @@ category_create_invalid_data: list[dict[str, Any]] = [
         },
         "exception_type": TypeError,
         "system_answer": "Category.__init__() missing 1 required"
-                         " positional argument: 'description'",
+        " positional argument: 'description'",
     },
     {
         "data_for_create": {
             "name": "Устройства связи",
             "description": "Телекоммуникации: рации, станции,"
-                           "смартфоны, спутниковый интернет",
+            "смартфоны, спутниковый интернет",
         },
         "exception_type": TypeError,
         "system_answer": "Category.__init__() missing 1 required"
-                         " positional argument: 'products'",
+        " positional argument: 'products'",
     },
 ]
 
@@ -56,7 +56,7 @@ category_create_invalid_data_type: list[dict[str, Any]] = [
         "data_for_create": {
             "name": 1,
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": [test_product1, test_product2],
         },
         "exception_type": TypeError,
@@ -66,7 +66,7 @@ category_create_invalid_data_type: list[dict[str, Any]] = [
         "data_for_create": {
             "name": 1.1,
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": [test_product1, test_product2],
         },
         "exception_type": TypeError,
@@ -76,7 +76,7 @@ category_create_invalid_data_type: list[dict[str, Any]] = [
         "data_for_create": {
             "name": True,
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": [test_product1, test_product2],
         },
         "exception_type": TypeError,
@@ -86,7 +86,7 @@ category_create_invalid_data_type: list[dict[str, Any]] = [
         "data_for_create": {
             "name": [1, 2, 3],
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": [test_product1, test_product2],
         },
         "exception_type": TypeError,
@@ -96,7 +96,7 @@ category_create_invalid_data_type: list[dict[str, Any]] = [
         "data_for_create": {
             "name": (1, 2, 3),
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": [test_product1, test_product2],
         },
         "exception_type": TypeError,
@@ -106,7 +106,7 @@ category_create_invalid_data_type: list[dict[str, Any]] = [
         "data_for_create": {
             "name": {1, 2, 3},
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": [test_product1, test_product2],
         },
         "exception_type": TypeError,
@@ -116,7 +116,7 @@ category_create_invalid_data_type: list[dict[str, Any]] = [
         "data_for_create": {
             "name": {"Устройства связи": 1},
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": [test_product1, test_product2],
         },
         "exception_type": TypeError,
@@ -189,7 +189,7 @@ category_create_invalid_data_type: list[dict[str, Any]] = [
         "data_for_create": {
             "name": "Устройства связи",
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": 1,
         },
         "exception_type": TypeError,
@@ -199,7 +199,7 @@ category_create_invalid_data_type: list[dict[str, Any]] = [
         "data_for_create": {
             "name": "Устройства связи",
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": 1.1,
         },
         "exception_type": TypeError,
@@ -209,7 +209,7 @@ category_create_invalid_data_type: list[dict[str, Any]] = [
         "data_for_create": {
             "name": "Устройства связи",
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": "test_product1",
         },
         "exception_type": TypeError,
@@ -219,7 +219,7 @@ category_create_invalid_data_type: list[dict[str, Any]] = [
         "data_for_create": {
             "name": "Устройства связи",
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": True,
         },
         "exception_type": TypeError,
@@ -229,7 +229,7 @@ category_create_invalid_data_type: list[dict[str, Any]] = [
         "data_for_create": {
             "name": "Устройства связи",
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": (1, 2, 3),
         },
         "exception_type": TypeError,
@@ -239,7 +239,7 @@ category_create_invalid_data_type: list[dict[str, Any]] = [
         "data_for_create": {
             "name": "Устройства связи",
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": {1, 2, 3},
         },
         "exception_type": TypeError,
@@ -249,7 +249,7 @@ category_create_invalid_data_type: list[dict[str, Any]] = [
         "data_for_create": {
             "name": "Устройства связи",
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": {"product": 1},
         },
         "exception_type": TypeError,
@@ -259,88 +259,91 @@ category_create_invalid_data_type: list[dict[str, Any]] = [
         "data_for_create": {
             "name": "Устройства связи",
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": [test_product1, 1],
         },
         "exception_type": TypeError,
-        "system_answer": "Не все элементы products"
-                         " являются типом Product",
+        "system_answer": "Не все элементы products" " являются типом Product",
     },
     {
         "data_for_create": {
             "name": "Устройства связи",
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": [test_product1, 1.1],
         },
         "exception_type": TypeError,
-        "system_answer": "Не все элементы products"
-                         " являются типом Product",
+        "system_answer": "Не все элементы products" " являются типом Product",
     },
     {
         "data_for_create": {
             "name": "Устройства связи",
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": [test_product1, "1"],
         },
         "exception_type": TypeError,
-        "system_answer": "Не все элементы products"
-                         " являются типом Product",
+        "system_answer": "Не все элементы products" " являются типом Product",
     },
     {
         "data_for_create": {
             "name": "Устройства связи",
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": [test_product1, True],
         },
         "exception_type": TypeError,
-        "system_answer": "Не все элементы products"
-                         " являются типом Product",
+        "system_answer": "Не все элементы products" " являются типом Product",
     },
     {
         "data_for_create": {
             "name": "Устройства связи",
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": [test_product1, [1, 2, 3]],
         },
         "exception_type": TypeError,
-        "system_answer": "Не все элементы products"
-                         " являются типом Product",
+        "system_answer": "Не все элементы products" " являются типом Product",
     },
     {
         "data_for_create": {
             "name": "Устройства связи",
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": [test_product1, (1, 2, 3)],
         },
         "exception_type": TypeError,
-        "system_answer": "Не все элементы products"
-                         " являются типом Product",
+        "system_answer": "Не все элементы products" " являются типом Product",
     },
     {
         "data_for_create": {
             "name": "Устройства связи",
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": [test_product1, {1, 2, 3}],
         },
         "exception_type": TypeError,
-        "system_answer": "Не все элементы products"
-                         " являются типом Product",
+        "system_answer": "Не все элементы products" " являются типом Product",
     },
     {
         "data_for_create": {
             "name": "Устройства связи",
             "description": "Телекоммуникации: рации, станции,"
-                           " смартфоны, спутниковый интернет",
+            " смартфоны, спутниковый интернет",
             "products": [test_product1, {"product": 1}],
         },
         "exception_type": TypeError,
-        "system_answer": "Не все элементы products"
-                         " являются типом Product",
+        "system_answer": "Не все элементы products" " являются типом Product",
     },
+]
+
+add_product_incorrect_type: list[dict[str, Any]] = [
+    {"add_product": "1"},
+    {"add_product": 1},
+    {"add_product": 1.1},
+    {"add_product": True},
+    {"add_product": [1, 2, 3]},
+    {"add_product": {1, 2, 3}},
+    {"add_product": (1, 2, 3)},
+    {"add_product": {"test_price": 1}},
 ]

@@ -23,6 +23,30 @@ class Category:
 
         self.name = name
         self.description = description
-        self.products = products
+        self.__products = products
         Category.category_count += 1
-        Category.product_count = len(self.products)
+        Category.product_count = len(self.__products)
+
+    def add_product(self, add_product: Product) -> None:
+        if not isinstance(add_product, Product):
+            raise TypeError("add_product должен быть типом Product")
+        for product in self.__products:
+            if product.name == add_product.name:
+                product.quantity += add_product.quantity
+                if add_product.price > product.price:
+                    product.price = add_product.price
+                break
+
+        else:
+            self.__products.append(add_product)
+            Category.product_count +=1
+
+    @property
+    def get_products(self) -> list[str]:
+        return [
+            (
+                f"{product.name}, {product.price} руб."
+                f" Остаток: {product.quantity}"
+            )
+            for product in self.__products
+        ]
