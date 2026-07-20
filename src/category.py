@@ -62,4 +62,4 @@ class Category:
         ]
 
     def __str__(self) -> str:
-        return f'{self.name.capitalize()}, количество продуктов: {self.products_summary_quantity} шт.'
+        return f'{self.name}, количество продуктов: {self.products_summary_quantity} шт.'
