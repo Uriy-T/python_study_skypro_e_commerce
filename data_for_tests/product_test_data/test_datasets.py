@@ -448,3 +448,38 @@ set_price_with_incorrect_type: list[dict[str, Any]] = [
     {"new_price": (1, 2, 3)},
     {"new_price": {"test_price": 1}},
 ]
+
+add_incorrect_objects: list[dict[str, Any]] = [
+    {
+        "incorrect_object": 1,
+        "expected_answer": "'int' object has no attribute 'price'",
+    },
+    {
+        "incorrect_object": 1.1,
+        "expected_answer": "'float' object has no attribute 'price'",
+    },
+    {
+        "incorrect_object": "1",
+        "expected_answer": "'str' object has no attribute 'price'",
+    },
+    {
+        "incorrect_object": False,
+        "expected_answer": "'bool' object has no attribute 'price'",
+    },
+    {
+        "incorrect_object": [1, 2, 3],
+        "expected_answer": "'list' object has no attribute 'price'",
+    },
+    {
+        "incorrect_object": (1, 2, 3),
+        "expected_answer": "'tuple' object has no attribute 'price'",
+    },
+    {
+        "incorrect_object": {1, 2, 3},
+        "expected_answer": "'set' object has no attribute 'price'",
+    },
+    {
+        "incorrect_object": {"object": 1},
+        "expected_answer": "'dict' object has no attribute 'price'",
+    },
+]

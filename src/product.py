@@ -59,3 +59,9 @@ class Product:
                 pass
         else:
             self.__price = new_price
+
+    def __str__(self) -> str:
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other: "Product") -> int | float:
+        return (self.price * self.quantity) + (other.price * other.quantity)

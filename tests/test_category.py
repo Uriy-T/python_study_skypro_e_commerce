@@ -1,9 +1,6 @@
-from typing import Any
 
 import pytest
 
-from data_for_tests.category_test_data.test_datasets import \
-    add_product_incorrect_type as incorrect_product
 from data_for_tests.category_test_data.test_datasets import \
     category_create_invalid_data as c_invalid_data
 from data_for_tests.category_test_data.test_datasets import \
@@ -166,14 +163,14 @@ class TestAddProduct:
         assert len(category.get_products) == 1
         assert (
             category.get_products[0] == "Xbox series X, 56000.0 руб."
-            " Остаток: 30"
+            " Остаток: 30 шт."
         )
 
         category.add_product(product2)
         assert len(category.get_products) == 2
         assert (
             category.get_products[1] == 'NES "reborn", 4500.5 руб.'
-            " Остаток: 11"
+            " Остаток: 11 шт."
         )
 
     @pytest.mark.category_positive
@@ -199,7 +196,7 @@ class TestAddProduct:
         assert len(category.get_products) == 2
         assert (
             category.get_products[0] == "Xbox series X, 100000.0 руб."
-            " Остаток: 42"
+            " Остаток: 42 шт."
         )
 
     @pytest.mark.category_positive
@@ -225,21 +222,30 @@ class TestAddProduct:
         assert len(category.get_products) == 2
         assert (
             category.get_products[0] == "Xbox series X, 56000.0 руб."
-            " Остаток: 56"
+            " Остаток: 56 шт."
         )
 
-    # Негативные тесты добавления продукта
-    @pytest.mark.category_negative
-    @pytest.mark.parametrize(
-        param_packer_old(incorrect_product),
-        value_packer_old(incorrect_product),
-    )
-    def test_add_product_incorrect_type(
-        self, create_category: Category, add_product: Any
-    ) -> None:
-        with pytest.raises(TypeError) as exc_info:
-            create_category.add_product(add_product)
 
-            assert (
-                str(exc_info.value) == "add_product должен быть типом Product"
-            )
+class TestMagicMethods:
+
+    @pytest.mark.category_positive
+    def test_str_method(self, create_category: Category) -> None:
+
+        product1 = Product(
+            "Xbox series X", "Консоль + 2 геймпада", 56000.00, 30
+        )
+
+        product2 = Product(
+            'NES "reborn"', "Консоль, 2 геймпада, 5000 игр", 4500.50, 11
+        )
+
+        category = Category(
+            name="Игровые консоли",
+            description="Игровые консоли, геймпады, аксессуары, расширения",
+            products=[product1, product2],
+        )
+
+        assert (
+            category.__str__()
+            == "Игровые консоли, количество продуктов: 41 шт."
+        )

@@ -5,6 +5,8 @@ import pytest
 from pytest import CaptureFixture
 
 from data_for_tests.product_test_data.test_datasets import \
+    add_incorrect_objects
+from data_for_tests.product_test_data.test_datasets import \
     product_create_by_classmethod_invalid_data as cm_invalid_data
 from data_for_tests.product_test_data.test_datasets import \
     product_create_invalid_data as invalid_data
@@ -241,3 +243,42 @@ class TestSetProductPrice:
             create_product_valid.price = new_price
 
         assert str(exc_info.value) == "new_price должен быть числом"
+
+
+class TestMagicMethod:
+
+    @pytest.mark.product_positive
+    def test_str_method(self, create_product_valid: Product) -> None:
+        assert (
+            create_product_valid.__str__()
+            == "Samsung Galaxy S 200, 57000.0 руб. Остаток: 23 шт."
+        )
+
+    @pytest.mark.product_positive
+    def test_add_method(self) -> None:
+        product1 = Product(
+            "Xbox series X", "Консоль + 2 геймпада", 56000.00, 30
+        )
+
+        product2 = Product(
+            'NES "reborn"', "Консоль, 2 геймпада, 5000 игр", 4500.50, 11
+        )
+
+        assert product1 + product2 == 1729505.5
+
+    @pytest.mark.product_negative
+    @pytest.mark.parametrize(
+        param_packer_old(add_incorrect_objects),
+        value_packer_old(add_incorrect_objects),
+    )
+    def test_add_method_incorrect_object(
+        self, incorrect_object: Any, expected_answer: str
+    ) -> None:
+        product1 = Product(
+            "Xbox series X", "Консоль + 2 геймпада", 56000.00, 30
+        )
+
+        with pytest.raises(AttributeError) as exc_info:
+            product1 + incorrect_object
+
+        assert str(exc_info.value) == expected_answer
