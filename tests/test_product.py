@@ -278,7 +278,7 @@ class TestMagicMethod:
             "Xbox series X", "Консоль + 2 геймпада", 56000.00, 30
         )
 
-        with pytest.raises(AttributeError) as exc_info:
+        with pytest.raises(TypeError) as exc_info:
             product1 + incorrect_object
 
         assert str(exc_info.value) == expected_answer

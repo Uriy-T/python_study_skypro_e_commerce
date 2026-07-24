@@ -1,5 +1,6 @@
 from typing import Any
 
+from data_for_tests.product_test_data.test_datasets import test_category
 from src.product import Product
 
 test_product1 = Product("Продукт1", "Описание 1", 1.1, 1)
@@ -12,7 +13,7 @@ category_create_valid_data: list[dict[str, Any]] = [
             "description": "Телекоммуникации: рации, станции, "
             "смартфоны, спутниковый интернет",
             "product_count": 1,
-            "category_count": 1,
+            "category_count": 2,
         }
     }
 ]
@@ -346,4 +347,5 @@ add_product_incorrect_type: list[dict[str, Any]] = [
     {"add_product": {1, 2, 3}},
     {"add_product": (1, 2, 3)},
     {"add_product": {"test_price": 1}},
+    {"add_product": test_category},
 ]

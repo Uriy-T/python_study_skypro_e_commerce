@@ -65,40 +65,72 @@ class Product:
 
     def __add__(self, other: "Product") -> int | float:
         if not isinstance(other, Product):
-            raise TypeError
+            raise TypeError(
+                f"объект '{other.__class__.__name__}'"
+                f" не содержит аттрибута 'price'"
+            )
+        if type(self) is not type(other):
+            raise TypeError(
+                f"объект '{other.__class__.__name__}'"
+                f" не является '{self.__class__.__name__}'"
+            )
         return (self.price * self.quantity) + (other.price * other.quantity)
 
 
 class Smartphone(Product):
 
-    def __init__(self, name: str,
-                 description: str,
-                 price: float,
-                 quantity: int,
-                 efficiency: float,
-                 model: str,
-                 memory: int,
-                 color: str):
-        super().__init__(name,
-                         description,
-                         price,
-                         quantity)
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        efficiency: float,
+        model: str,
+        memory: int | float,
+        color: str,
+    ):
+
+        if not isinstance(efficiency, float):
+            raise TypeError("efficiency должен быть float")
+        if not isinstance(model, str):
+            raise TypeError("model должен быть str")
+        if type(memory) is not int:
+            raise TypeError("memory должен быть int")
+        if memory <= 0:
+            raise ValueError("memory должно быть положительным числом")
+        if not isinstance(color, str):
+            raise TypeError("color должен быть str")
+
+        super().__init__(name, description, price, quantity)
+
         self.efficiency = efficiency
-        self.model = model,
-        self.memory = memory,
+        self.model = model
+        self.memory = memory
         self.color = color
+
 
 class LawnGrass(Product):
 
-    def __init__(self,
-                 name: str,
-                 description: str,
-                 price: float,
-                 quantity: int,
-                 country: str,
-                 germination_period: str,
-                 color: str):
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        price: float,
+        quantity: int,
+        country: str,
+        germination_period: str,
+        color: str,
+    ):
+
+        if not isinstance(country, str):
+            raise TypeError("country должен быть str")
+        if not isinstance(germination_period, str):
+            raise TypeError("germination_period должен быть str")
+        if not isinstance(color, str):
+            raise TypeError("color должен быть str")
+
         super().__init__(name, description, price, quantity)
         self.country = country
-        self.germination_period = germination_period,
+        self.germination_period = germination_period
         self.color = color

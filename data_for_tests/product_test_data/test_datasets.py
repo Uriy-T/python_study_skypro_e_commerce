@@ -1,5 +1,16 @@
 from typing import Any
 
+from src.category import Category
+from src.product import Product
+
+product = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+test_category = Category(
+    "Смартфоны",
+    "Смартфоны, как средство не только коммуникации,"
+    " но и получения дополнительных функций для удобства жизни",
+    [product],
+)
+
 product_create_valid_data: list[dict[str, Any]] = [
     {
         "create_product": {
@@ -452,34 +463,38 @@ set_price_with_incorrect_type: list[dict[str, Any]] = [
 add_incorrect_objects: list[dict[str, Any]] = [
     {
         "incorrect_object": 1,
-        "expected_answer": "'int' object has no attribute 'price'",
+        "expected_answer": "объект 'int' не содержит аттрибута 'price'",
     },
     {
         "incorrect_object": 1.1,
-        "expected_answer": "'float' object has no attribute 'price'",
+        "expected_answer": "объект 'float' не содержит аттрибута 'price'",
     },
     {
         "incorrect_object": "1",
-        "expected_answer": "'str' object has no attribute 'price'",
+        "expected_answer": "объект 'str' не содержит аттрибута 'price'",
     },
     {
         "incorrect_object": False,
-        "expected_answer": "'bool' object has no attribute 'price'",
+        "expected_answer": "объект 'bool' не содержит аттрибута 'price'",
     },
     {
         "incorrect_object": [1, 2, 3],
-        "expected_answer": "'list' object has no attribute 'price'",
+        "expected_answer": "объект 'list' не содержит аттрибута 'price'",
     },
     {
         "incorrect_object": (1, 2, 3),
-        "expected_answer": "'tuple' object has no attribute 'price'",
+        "expected_answer": "объект 'tuple' не содержит аттрибута 'price'",
     },
     {
         "incorrect_object": {1, 2, 3},
-        "expected_answer": "'set' object has no attribute 'price'",
+        "expected_answer": "объект 'set' не содержит аттрибута 'price'",
     },
     {
         "incorrect_object": {"object": 1},
-        "expected_answer": "'dict' object has no attribute 'price'",
+        "expected_answer": "объект 'dict' не содержит аттрибута 'price'",
+    },
+    {
+        "incorrect_object": test_category,
+        "expected_answer": "объект 'Category' не содержит аттрибута 'price'",
     },
 ]
