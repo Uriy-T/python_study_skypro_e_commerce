@@ -30,6 +30,7 @@ class Category:
     def add_product(self, add_product: Product) -> None:
         if not isinstance(add_product, Product):
             raise TypeError("add_product должен быть типом Product")
+
         for product in self.__products:
             if product.name == add_product.name:
                 product.quantity += add_product.quantity
@@ -56,5 +57,7 @@ class Category:
         return [(product.__str__()) for product in self.__products]
 
     def __str__(self) -> str:
-        return (f"{self.name}, количество продуктов:"
-                f" {self.products_summary_quantity} шт.")
+        return (
+            f"{self.name}, количество продуктов:"
+            f" {self.products_summary_quantity} шт."
+        )

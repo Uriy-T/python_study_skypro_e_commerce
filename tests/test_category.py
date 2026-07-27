@@ -1,6 +1,9 @@
+from typing import Any
 
 import pytest
 
+from data_for_tests.category_test_data.test_datasets import \
+    add_product_incorrect_type as incorrect_product
 from data_for_tests.category_test_data.test_datasets import \
     category_create_invalid_data as c_invalid_data
 from data_for_tests.category_test_data.test_datasets import \
@@ -19,6 +22,7 @@ class TestCategory:
         self,
         create_category: Category,
     ) -> None:
+
         assert (
             create_category.name == c_valid_data[0]["expected_values"]["name"]
         )
@@ -38,6 +42,7 @@ class TestCategory:
 
     @pytest.mark.category_positive
     def test_create_category_logic(self) -> None:
+        Category.category_count = 0
         product1 = Product(
             "Xbox series X", "Консоль + 2 геймпада", 56000.00, 30
         )
@@ -52,7 +57,7 @@ class TestCategory:
             products=[product1, product2],
         )
 
-        assert Category.category_count == 2
+        assert Category.category_count == 1
         assert category1.product_count == 2
 
         product3 = Product(
@@ -65,7 +70,7 @@ class TestCategory:
             products=[product3],
         )
 
-        assert Category.category_count == 3
+        assert Category.category_count == 2
 
     # Негативные тесты создания категории
     @pytest.mark.category_negative
@@ -224,6 +229,25 @@ class TestAddProduct:
             category.get_products[0] == "Xbox series X, 56000.0 руб."
             " Остаток: 56 шт."
         )
+
+    @pytest.mark.category_negative
+    @pytest.mark.parametrize(
+        param_packer_old(incorrect_product),
+        value_packer_old(incorrect_product),
+    )
+    def test_add_incorrect_object_type(self, add_product: Any) -> None:
+        category = Category(
+            name="Игровые консоли",
+            description="Игровые консоли, геймпады, аксессуары, расширения",
+            products=[],
+        )
+
+        with pytest.raises(TypeError) as exc_info:
+            category.add_product(add_product)
+
+            assert (
+                str(exc_info.value) == "add_product должен быть типом Product"
+            )
 
 
 class TestMagicMethods:
