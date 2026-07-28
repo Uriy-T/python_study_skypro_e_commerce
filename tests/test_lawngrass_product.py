@@ -1,6 +1,7 @@
 from typing import Any
 
 import pytest
+from _pytest.capture import CaptureFixture
 
 from data_for_tests.lawngrass_test_data.test_datasets import \
     lawngrass_create_invalid_data_type as invalid_types
@@ -38,8 +39,7 @@ class TestLawnGrassCreation:
 
         assert (
             "LawnGrass.__init__() missing 1"
-            " required positional argument: 'country'"
-            == str(exc_info.value)
+            " required positional argument: 'country'" == str(exc_info.value)
         )
 
     @pytest.mark.lawngrass_negative
@@ -78,8 +78,7 @@ class TestLawnGrassCreation:
 
         assert (
             "LawnGrass.__init__() missing"
-            " 1 required positional argument: 'color'"
-            == str(exc_info.value)
+            " 1 required positional argument: 'color'" == str(exc_info.value)
         )
 
     @pytest.mark.lawngrass_negative
@@ -97,10 +96,10 @@ class TestLawnGrassCreation:
 
             assert str(exc_info.value) == system_answer
 
+
 class TestObjectMixin:
 
-    def test_mixin_with_lawngrass(self,
-                                  capsys):
+    def test_mixin_with_lawngrass(self, capsys: CaptureFixture) -> None:
         LawnGrass(
             "Газонная трава",
             "Элитная трава для газона",
@@ -113,4 +112,7 @@ class TestObjectMixin:
 
         captured_output = capsys.readouterr()
 
-        assert captured_output.out == 'LawnGrass(Газонная трава, Элитная трава для газона, 500.0, 20)\n'
+        assert (
+            captured_output.out == "LawnGrass(Газонная трава,"
+            " Элитная трава для газона, 500.0, 20)\n"
+        )

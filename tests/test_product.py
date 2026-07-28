@@ -215,8 +215,9 @@ class TestSetProductPrice:
         create_product_valid.price = 0
         captured_message = capsys.readouterr()
         assert (
-            captured_message.out
-            == "Product(Samsung Galaxy S 200, Лучшее устройство для лучшей связи, 57000.0, 23)\nЦена не должна быть нулевая или отрицательная\n"
+            captured_message.out == "Product(Samsung Galaxy S 200,"
+            " Лучшее устройство для лучшей связи, 57000.0, 23)\n"
+            "Цена не должна быть нулевая или отрицательная\n"
         )
 
     @pytest.mark.product_negative
@@ -226,8 +227,9 @@ class TestSetProductPrice:
         create_product_valid.price = -100
         captured_message = capsys.readouterr()
         assert (
-            captured_message.out
-            == "Product(Samsung Galaxy S 200, Лучшее устройство для лучшей связи, 57000.0, 23)\nЦена не должна быть нулевая или отрицательная\n"
+            captured_message.out == "Product(Samsung Galaxy S 200,"
+            " Лучшее устройство для лучшей связи, 57000.0, 23)\n"
+            "Цена не должна быть нулевая или отрицательная\n"
         )
 
     # Установка невалидных типов для значения параметра price
@@ -283,17 +285,20 @@ class TestMagicMethod:
 
         assert str(exc_info.value) == expected_answer
 
+
 class TestObjectMixin:
 
-    def test_mixin_with_product(self,
-                                capsys: CaptureFixture):
+    def test_mixin_with_product(self, capsys: CaptureFixture) -> None:
         Product(
             name="Samsung Galaxy S23 Ultra",
             description="256GB, Серый цвет, 200MP камера",
             price=180000.0,
-            quantity=5
+            quantity=5,
         )
 
         captured_output = capsys.readouterr()
 
-        assert captured_output.out == 'Product(Samsung Galaxy S23 Ultra, 256GB, Серый цвет, 200MP камера, 180000.0, 5)\n'
+        assert (
+            captured_output.out == "Product(Samsung Galaxy S23 Ultra,"
+            " 256GB, Серый цвет, 200MP камера, 180000.0, 5)\n"
+        )

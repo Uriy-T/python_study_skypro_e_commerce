@@ -1,6 +1,7 @@
 from typing import Any
 
 import pytest
+from _pytest.capture import CaptureFixture
 
 from data_for_tests.smartphone_test_data.test_datasets import \
     category_create_invalid_data_type as invalid_types
@@ -12,11 +13,11 @@ class TestSmartphoneCreation:
 
     @pytest.mark.smartphone_positive
     def test_smartphone_creation_by_init_method(
-            self, create_smartphone: Smartphone
+        self, create_smartphone: Smartphone
     ) -> None:
         assert create_smartphone.name == "Samsung Galaxy S23 Ultra"
         assert (
-                create_smartphone.description == "256GB, Серый цвет, 200MP камера"
+            create_smartphone.description == "256GB, Серый цвет, 200MP камера"
         )
         assert create_smartphone.price == 180000.0
         assert create_smartphone.quantity == 5
@@ -27,7 +28,7 @@ class TestSmartphoneCreation:
 
     @pytest.mark.smartphone_negative
     def test_smartphone_creation_without_efficiency(
-            self, create_smartphone: Smartphone
+        self, create_smartphone: Smartphone
     ) -> None:
         with pytest.raises(TypeError) as exc_info:
             Smartphone(
@@ -41,14 +42,14 @@ class TestSmartphoneCreation:
             )
 
         assert (
-                "Smartphone.__init__() missing"
-                " 1 required positional argument: 'efficiency'"
-                == str(exc_info.value)
+            "Smartphone.__init__() missing"
+            " 1 required positional argument: 'efficiency'"
+            == str(exc_info.value)
         )
 
     @pytest.mark.smartphone_negative
     def test_smartphone_creation_without_model(
-            self, create_smartphone: Smartphone
+        self, create_smartphone: Smartphone
     ) -> None:
         with pytest.raises(TypeError) as exc_info:
             Smartphone(
@@ -62,14 +63,13 @@ class TestSmartphoneCreation:
             )
 
         assert (
-                "Smartphone.__init__() missing"
-                " 1 required positional argument: 'model'"
-                == str(exc_info.value)
+            "Smartphone.__init__() missing"
+            " 1 required positional argument: 'model'" == str(exc_info.value)
         )
 
     @pytest.mark.smartphone_negative
     def test_smartphone_creation_without_memory(
-            self, create_smartphone: Smartphone
+        self, create_smartphone: Smartphone
     ) -> None:
         with pytest.raises(TypeError) as exc_info:
             Smartphone(
@@ -83,14 +83,13 @@ class TestSmartphoneCreation:
             )
 
         assert (
-                "Smartphone.__init__() missing"
-                " 1 required positional argument: 'memory'"
-                == str(exc_info.value)
+            "Smartphone.__init__() missing"
+            " 1 required positional argument: 'memory'" == str(exc_info.value)
         )
 
     @pytest.mark.smartphone_negative
     def test_smartphone_creation_without_color(
-            self, create_smartphone: Smartphone
+        self, create_smartphone: Smartphone
     ) -> None:
         with pytest.raises(TypeError) as exc_info:
             Smartphone(
@@ -103,9 +102,8 @@ class TestSmartphoneCreation:
                 memory=256,
             )
         assert (
-                "Smartphone.__init__() missing"
-                " 1 required positional argument: 'color'"
-                == str(exc_info.value)
+            "Smartphone.__init__() missing"
+            " 1 required positional argument: 'color'" == str(exc_info.value)
         )
 
     @pytest.mark.smartphone_negative
@@ -113,10 +111,10 @@ class TestSmartphoneCreation:
         param_packer_old(invalid_types), value_packer_old(invalid_types)
     )
     def test_smartphone_creation_with_incorrect_data_types(
-            self,
-            data_for_create: dict[str, Any],
-            exception_type: type[Exception],
-            system_answer: str,
+        self,
+        data_for_create: dict[str, Any],
+        exception_type: type[Exception],
+        system_answer: str,
     ) -> None:
         with pytest.raises(exception_type) as exc_info:
             Smartphone(**data_for_create)
@@ -127,28 +125,27 @@ class TestSmartphoneCreation:
 class TestSmartphoneMethods:
     @pytest.mark.smartphone_positive
     def test_add_magic_method_call_positive(
-            self, create_two_smartphone: tuple[Smartphone, Smartphone]
+        self, create_two_smartphone: tuple[Smartphone, Smartphone]
     ) -> None:
         smartphone1, smartphone2 = create_two_smartphone
         assert smartphone1 + smartphone2 == 2580000.0
 
     @pytest.mark.smartphone_negative
     def test_add_magic_method_call_negative(
-            self, create_two_different_products: tuple
+        self, create_two_different_products: tuple
     ) -> None:
         with pytest.raises(TypeError) as exc_info:
             create_two_different_products[0] + create_two_different_products[1]
 
         assert (
-                str(exc_info.value)
-                == "объект 'LawnGrass' не является 'Smartphone'"
+            str(exc_info.value)
+            == "объект 'LawnGrass' не является 'Smartphone'"
         )
 
 
 class TestObjectMixin:
 
-    def test_mixin_with_smartphone(self,
-                                   capsys):
+    def test_mixin_with_smartphone(self, capsys: CaptureFixture) -> None:
         Smartphone(
             name="Samsung Galaxy S23 Ultra",
             description="256GB, Серый цвет, 200MP камера",
@@ -162,4 +159,7 @@ class TestObjectMixin:
 
         captured_output = capsys.readouterr()
 
-        assert captured_output.out == 'Smartphone(Samsung Galaxy S23 Ultra, 256GB, Серый цвет, 200MP камера, 180000.0, 5)\n'
+        assert (
+            captured_output.out == "Smartphone(Samsung Galaxy S23 Ultra,"
+            " 256GB, Серый цвет, 200MP камера, 180000.0, 5)\n"
+        )
