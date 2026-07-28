@@ -96,3 +96,21 @@ class TestLawnGrassCreation:
             LawnGrass(**data_for_create)
 
             assert str(exc_info.value) == system_answer
+
+class TestObjectMixin:
+
+    def test_mixin_with_lawngrass(self,
+                                  capsys):
+        LawnGrass(
+            "Газонная трава",
+            "Элитная трава для газона",
+            500.0,
+            20,
+            "Россия",
+            "7 дней",
+            "Зеленый",
+        )
+
+        captured_output = capsys.readouterr()
+
+        assert captured_output.out == 'LawnGrass(Газонная трава, Элитная трава для газона, 500.0, 20)\n'
