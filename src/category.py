@@ -56,6 +56,18 @@ class Category:
     def get_products(self) -> list[str]:
         return [(product.__str__()) for product in self.__products]
 
+    def middle_price(self) -> float:
+        """
+        Вычисляет среднюю стоимость всех продуктов
+        относящихся к конкретной категрии.
+        :return: вычисленное значение в формате вычисленного числа.
+        """
+        try:
+            return round(sum([product.price for product in self.__products]) / len(self.__products), 2)
+        except ZeroDivisionError:
+            return 0
+
+
     def __str__(self) -> str:
         return (
             f"{self.name}, количество продуктов:"
