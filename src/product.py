@@ -1,4 +1,8 @@
-class Product:
+from src.mixins.create_object import InitObject
+from src.products.base_product import BaseProduct
+
+
+class Product(InitObject, BaseProduct):
     """
     Класс описывающий свойства и методы сущности
     "Продукт".
@@ -25,6 +29,7 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     @classmethod
     def new_product(cls, product_data: dict) -> "Product":

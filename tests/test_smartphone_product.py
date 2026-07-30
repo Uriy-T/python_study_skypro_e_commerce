@@ -1,6 +1,7 @@
 from typing import Any
 
 import pytest
+from _pytest.capture import CaptureFixture
 
 from data_for_tests.smartphone_test_data.test_datasets import \
     category_create_invalid_data_type as invalid_types
@@ -63,8 +64,7 @@ class TestSmartphoneCreation:
 
         assert (
             "Smartphone.__init__() missing"
-            " 1 required positional argument: 'model'"
-            == str(exc_info.value)
+            " 1 required positional argument: 'model'" == str(exc_info.value)
         )
 
     @pytest.mark.smartphone_negative
@@ -84,8 +84,7 @@ class TestSmartphoneCreation:
 
         assert (
             "Smartphone.__init__() missing"
-            " 1 required positional argument: 'memory'"
-            == str(exc_info.value)
+            " 1 required positional argument: 'memory'" == str(exc_info.value)
         )
 
     @pytest.mark.smartphone_negative
@@ -104,8 +103,7 @@ class TestSmartphoneCreation:
             )
         assert (
             "Smartphone.__init__() missing"
-            " 1 required positional argument: 'color'"
-            == str(exc_info.value)
+            " 1 required positional argument: 'color'" == str(exc_info.value)
         )
 
     @pytest.mark.smartphone_negative
@@ -142,4 +140,26 @@ class TestSmartphoneMethods:
         assert (
             str(exc_info.value)
             == "объект 'LawnGrass' не является 'Smartphone'"
+        )
+
+
+class TestObjectMixin:
+
+    def test_mixin_with_smartphone(self, capsys: CaptureFixture) -> None:
+        Smartphone(
+            name="Samsung Galaxy S23 Ultra",
+            description="256GB, Серый цвет, 200MP камера",
+            price=180000.0,
+            quantity=5,
+            efficiency=95.5,
+            model="S23 Ultra",
+            memory=256,
+            color="Серый",
+        )
+
+        captured_output = capsys.readouterr()
+
+        assert (
+            captured_output.out == "Smartphone(Samsung Galaxy S23 Ultra,"
+            " 256GB, Серый цвет, 200MP камера, 180000.0, 5)\n"
         )
