@@ -52,23 +52,13 @@ def create_category(create_product_valid: Product) -> Category:
     return Category(name, description, products)
 
 
-# Создается три объекта класса Product через конструктор.
-@pytest.fixture(
-    scope="function",
-    params=[
-        (
-            "Samsung Galaxy S23 Ultra",
-            "256GB, Серый цвет, 200MP камера",
-            180000.0,
-            5,
-        ),
-        ("Iphone 15", "512GB, Gray space", 210000.0, 8),
-        ("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14),
-    ],
-)
-def create_several_products(request: FixtureRequest) -> Product:
-    name, description, price, quantity = request.param
-    return Product(name, description, price, quantity)
+# Создается два объекта класса Product через конструктор.
+@pytest.fixture(scope="function")
+
+def create_several_products() -> tuple[Product,...]:
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    return product1, product2
 
 
 # Создается один объект класса Smartphone через конструктор.
