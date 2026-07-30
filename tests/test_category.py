@@ -2,14 +2,18 @@ from typing import Any
 
 import pytest
 
-from data_for_tests.category_test_data.test_datasets import \
-    add_product_incorrect_type as incorrect_product
-from data_for_tests.category_test_data.test_datasets import \
-    category_create_invalid_data as c_invalid_data
-from data_for_tests.category_test_data.test_datasets import \
-    category_create_invalid_data_type as c_invalid_data_type
-from data_for_tests.category_test_data.test_datasets import \
-    category_create_valid_data as c_valid_data
+from data_for_tests.category_test_data.test_datasets import (
+    add_product_incorrect_type as incorrect_product,
+)
+from data_for_tests.category_test_data.test_datasets import (
+    category_create_invalid_data as c_invalid_data,
+)
+from data_for_tests.category_test_data.test_datasets import (
+    category_create_invalid_data_type as c_invalid_data_type,
+)
+from data_for_tests.category_test_data.test_datasets import (
+    category_create_valid_data as c_valid_data,
+)
 from src.category import Category
 from src.product import Product
 from src.tools.dataset_handlers import param_packer_old, value_packer_old
@@ -19,24 +23,24 @@ class TestCategory:
 
     @pytest.mark.category_positive
     def test_create_category_positive(
-            self,
-            create_category: Category,
+        self,
+        create_category: Category,
     ) -> None:
         assert (
-                create_category.name == c_valid_data[0]["expected_values"]["name"]
+            create_category.name == c_valid_data[0]["expected_values"]["name"]
         )
         assert (
-                create_category.description
-                == c_valid_data[0]["expected_values"]["description"]
+            create_category.description
+            == c_valid_data[0]["expected_values"]["description"]
         )
         assert isinstance(create_category.get_products, list)
         assert (
-                create_category.product_count
-                == c_valid_data[0]["expected_values"]["product_count"]
+            create_category.product_count
+            == c_valid_data[0]["expected_values"]["product_count"]
         )
         assert (
-                create_category.category_count
-                == c_valid_data[0]["expected_values"]["category_count"]
+            create_category.category_count
+            == c_valid_data[0]["expected_values"]["category_count"]
         )
 
     @pytest.mark.category_positive
@@ -112,10 +116,10 @@ class TestCategory:
         value_packer_old(c_invalid_data_type),
     )
     def test_create_category_with_incorrect_data_types(
-            self,
-            data_for_create: dict,
-            exception_type: type[Exception],
-            system_answer: str,
+        self,
+        data_for_create: dict,
+        exception_type: type[Exception],
+        system_answer: str,
     ) -> None:
         with pytest.raises(exception_type) as exc_info:
             Category(*data_for_create.values())
@@ -166,15 +170,15 @@ class TestAddProduct:
         )
         assert len(category.get_products) == 1
         assert (
-                category.get_products[0] == "Xbox series X, 56000.0 руб."
-                                            " Остаток: 30 шт."
+            category.get_products[0] == "Xbox series X, 56000.0 руб."
+            " Остаток: 30 шт."
         )
 
         category.add_product(product2)
         assert len(category.get_products) == 2
         assert (
-                category.get_products[1] == 'NES "reborn", 4500.5 руб.'
-                                            " Остаток: 11 шт."
+            category.get_products[1] == 'NES "reborn", 4500.5 руб.'
+            " Остаток: 11 шт."
         )
 
     @pytest.mark.category_positive
@@ -199,8 +203,8 @@ class TestAddProduct:
         category.add_product(product2)
         assert len(category.get_products) == 2
         assert (
-                category.get_products[0] == "Xbox series X, 100000.0 руб."
-                                            " Остаток: 42 шт."
+            category.get_products[0] == "Xbox series X, 100000.0 руб."
+            " Остаток: 42 шт."
         )
 
     @pytest.mark.category_positive
@@ -225,8 +229,8 @@ class TestAddProduct:
         category.add_product(product2)
         assert len(category.get_products) == 2
         assert (
-                category.get_products[0] == "Xbox series X, 56000.0 руб."
-                                            " Остаток: 56 шт."
+            category.get_products[0] == "Xbox series X, 56000.0 руб."
+            " Остаток: 56 шт."
         )
 
     @pytest.mark.category_negative
@@ -245,18 +249,21 @@ class TestAddProduct:
             category.add_product(add_product)
 
             assert (
-                    str(exc_info.value) == "add_product должен быть типом Product"
+                str(exc_info.value) == "add_product должен быть типом Product"
             )
 
 
 class TestCalculateMethods:
 
     @pytest.mark.category_positive
-    def test_calculate_average_product_price(self,
-                                             create_several_products: tuple,
-                                             ) -> None:
+    def test_calculate_average_product_price(
+        self,
+        create_several_products: tuple,
+    ) -> None:
         product1, product2 = create_several_products
-        test_category = Category("Смартфоны", "Категория смартфонов", [product1])
+        test_category = Category(
+            "Смартфоны", "Категория смартфонов", [product1]
+        )
 
         assert test_category.middle_price() == 180000.0
 
@@ -290,6 +297,6 @@ class TestMagicMethods:
         )
 
         assert (
-                category.__str__()
-                == "Игровые консоли, количество продуктов: 41 шт."
+            category.__str__()
+            == "Игровые консоли, количество продуктов: 41 шт."
         )

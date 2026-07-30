@@ -3,8 +3,9 @@ from typing import Any
 import pytest
 from _pytest.capture import CaptureFixture
 
-from data_for_tests.smartphone_test_data.test_datasets import \
-    category_create_invalid_data_type as invalid_types
+from data_for_tests.smartphone_test_data.test_datasets import (
+    category_create_invalid_data_type as invalid_types,
+)
 from src.product import Smartphone
 from src.tools.dataset_handlers import param_packer_old, value_packer_old
 
