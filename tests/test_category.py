@@ -2,14 +2,18 @@ from typing import Any
 
 import pytest
 
-from data_for_tests.category_test_data.test_datasets import \
-    add_product_incorrect_type as incorrect_product
-from data_for_tests.category_test_data.test_datasets import \
-    category_create_invalid_data as c_invalid_data
-from data_for_tests.category_test_data.test_datasets import \
-    category_create_invalid_data_type as c_invalid_data_type
-from data_for_tests.category_test_data.test_datasets import \
-    category_create_valid_data as c_valid_data
+from data_for_tests.category_test_data.test_datasets import (
+    add_product_incorrect_type as incorrect_product,
+)
+from data_for_tests.category_test_data.test_datasets import (
+    category_create_invalid_data as c_invalid_data,
+)
+from data_for_tests.category_test_data.test_datasets import (
+    category_create_invalid_data_type as c_invalid_data_type,
+)
+from data_for_tests.category_test_data.test_datasets import (
+    category_create_valid_data as c_valid_data,
+)
 from src.category import Category
 from src.product import Product
 from src.tools.dataset_handlers import param_packer_old, value_packer_old
@@ -22,7 +26,6 @@ class TestCategory:
         self,
         create_category: Category,
     ) -> None:
-
         assert (
             create_category.name == c_valid_data[0]["expected_values"]["name"]
         )
@@ -250,11 +253,35 @@ class TestAddProduct:
             )
 
 
+class TestCalculateMethods:
+
+    @pytest.mark.category_positive
+    def test_calculate_average_product_price(
+        self,
+        create_several_products: tuple,
+    ) -> None:
+        product1, product2 = create_several_products
+        test_category = Category(
+            "Смартфоны", "Категория смартфонов", [product1]
+        )
+
+        assert test_category.middle_price() == 180000.0
+
+        test_category.add_product(product2)
+
+        assert test_category.middle_price() == 195000.0
+
+    @pytest.mark.category_negative
+    def test_calculate_average_product_price_empty_list(self) -> None:
+        test_category = Category("Смартфоны", "Категория смартфонов", [])
+
+        assert test_category.middle_price() == 0
+
+
 class TestMagicMethods:
 
     @pytest.mark.category_positive
     def test_str_method(self, create_category: Category) -> None:
-
         product1 = Product(
             "Xbox series X", "Консоль + 2 геймпада", 56000.00, 30
         )

@@ -4,18 +4,24 @@ from unittest.mock import Mock, patch
 import pytest
 from pytest import CaptureFixture
 
-from data_for_tests.product_test_data.test_datasets import \
-    add_incorrect_objects
-from data_for_tests.product_test_data.test_datasets import \
-    product_create_by_classmethod_invalid_data as cm_invalid_data
-from data_for_tests.product_test_data.test_datasets import \
-    product_create_invalid_data as invalid_data
-from data_for_tests.product_test_data.test_datasets import \
-    product_create_invalid_data_type as data_type
-from data_for_tests.product_test_data.test_datasets import \
-    product_create_valid_data as valid_data
-from data_for_tests.product_test_data.test_datasets import \
-    set_price_with_incorrect_type as incorrect_price
+from data_for_tests.product_test_data.test_datasets import (
+    add_incorrect_objects,
+)
+from data_for_tests.product_test_data.test_datasets import (
+    product_create_by_classmethod_invalid_data as cm_invalid_data,
+)
+from data_for_tests.product_test_data.test_datasets import (
+    product_create_invalid_data as invalid_data,
+)
+from data_for_tests.product_test_data.test_datasets import (
+    product_create_invalid_data_type as data_type,
+)
+from data_for_tests.product_test_data.test_datasets import (
+    product_create_valid_data as valid_data,
+)
+from data_for_tests.product_test_data.test_datasets import (
+    set_price_with_incorrect_type as incorrect_price,
+)
 from src.product import Product
 from src.tools.dataset_handlers import param_packer_old, value_packer_old
 
